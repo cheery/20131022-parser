@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import unittest
 from StringIO import StringIO
 from character_stream import EOFError
@@ -46,7 +47,7 @@ class TestTokenStream(unittest.TestCase):
             stream.adv()
             stream.adv()
             stream.adv()
-        
+
     def test_usage(self):
         stream = TokenStream(StringIO('abc("def")guux"ball"aba5 7  '))
         self.assertTrue(isinstance(stream.get(), Variable))
