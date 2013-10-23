@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import unittest
 from StringIO import StringIO
 from character_stream import CharacterStream, EOFError
