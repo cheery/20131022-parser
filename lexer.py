@@ -25,6 +25,7 @@ class TokenStream(object):
         stream = self.stream
         while stream.get().isspace():
             stream.adv()
+        start = stream.index
         string = stream.get()
         if string == '(':
             self.token = BeginList()
@@ -76,3 +77,5 @@ class TokenStream(object):
             self.token = String(string)
         else:
             raise Exception("unknown character %r" % string)
+        self.token.start = start
+        self.token.stop  = stream.index
