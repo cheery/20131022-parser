@@ -8,8 +8,8 @@ class IncompleteString(Exception):
     pass
 
 class TokenStream(object):
-    def __init__(self, stream):
-        self.stream = CharacterStream(stream)
+    def __init__(self, stream, path=None):
+        self.stream = CharacterStream(stream, path)
         self.paren_count = 0
         self.eof = False
         self.adv()
@@ -25,7 +25,7 @@ class TokenStream(object):
         stream = self.stream
         while stream.get().isspace():
             stream.adv()
-        start = stream.index
+        location = stream.get_source_location()
         string = stream.get()
         if string == '(':
             self.token = BeginList()
@@ -77,5 +77,4 @@ class TokenStream(object):
             self.token = String(string)
         else:
             raise Exception("unknown character %r" % string)
-        self.token.start = start
-        self.token.stop  = stream.index
+        self.token.location = location

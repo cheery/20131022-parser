@@ -21,10 +21,10 @@ def parse_sexpr(stream):
     if isinstance(current, Integer):
         return current
 
-def parse(stream):
+def parse(stream, path=None):
     output = []
     try:
-        stream = TokenStream(stream)
+        stream = TokenStream(stream, path)
         while True:
             output.append(parse_sexpr(stream))
             stream.adv()

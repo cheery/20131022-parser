@@ -1,6 +1,6 @@
 class Lexeme(object):
-    start = -1
-    stop  = -1
+    def __init__(self):
+        self.location = None
 
     def __repr__(self):
         name = self.__class__.__name__
@@ -15,6 +15,7 @@ class EndList(Lexeme):
 class StringLexeme(Lexeme):
     def __init__(self, string):
         self.string = string
+        Lexeme.__init__(self)
 
     def __repr__(self):
         return Lexeme.__repr__(self) + repr(self.string)
